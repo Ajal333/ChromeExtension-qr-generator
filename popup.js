@@ -1,14 +1,12 @@
-// var elem = document.getElementById("modal-content");
-// var modal = document.getElementById("modal-content-img");
+var modal = document.getElementById("modal-content");
+var elem = document.getElementById("newImg");
 
-// const addImage = (u) => {
-//   //   modal.parentNode.removeChild(modal);
-//   console.log(u);
-//   elem.innerHTML = `<img src=${u} alt="modal-content-img" id="newImg">`;
-//   elem.innerHTML = u;
-//   elem.innerHTML = url;
-// };
+const addImage = (u) => {
+  if (elem) elem.parentNode.removeChild(elem);
+  if (modal) modal.innerHTML = `<img src=${u} alt="newQr" id="newImg">`;
+};
 
-// // var final_url = `https://image-charts.com/chart?chl=${url}&choe=UTF-8&chof=.png&chs=150x150&cht=qr`;
-
-// addImage(final_url);
+chrome.tabs.query({ active: true }, function (tabs) {
+  var final_url = `https://image-charts.com/chart?chl=${tabs[0].url}&choe=UTF-8&chof=.png&chs=150x150&cht=qr`;
+  addImage(final_url);
+});
